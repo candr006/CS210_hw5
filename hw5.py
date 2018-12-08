@@ -5,22 +5,22 @@ from math import *
 def f1(x, function_num, function_type=''):
 	if (function_type=="diff"):
 		if(int(function_num)==1):
-			return ((3*(x*x))-(2))
+			return float((3*(x*x))-(2))
 		if (int(function_num)==2):
-			return (-1*exp(-x)-1)
+			return float(-1*exp(-x)-1)
 		if(int(function_num)==3):
-			return (sin(x)+ (x*cos(x)))
+			return float(sin(x)+ (x*cos(x)))
 		if(int(function_num)==4):
-			return (3*(x*x)-(6*x)+3)
+			return float(3*(x*x)-(6*x)+3)
 	else:
 		if(int(function_num)==1):
-			return ((x*x*x)-(2*x)-5)
+			return float((x*x*x)-(2*x)-5)
 		if (int(function_num)==2):
-			return (exp(-x)-x)
+			return float(exp(-x)-x)
 		if(int(function_num)==3):
-			return (x*sin(x)-1)
+			return float(x*sin(x)-1)
 		if(int(function_num)==4):
-			return ((x*x*x)-(3*(x*x))+(3*x)-1)
+			return float((x*x*x)-(3*(x*x))+(3*x)-1)
 
 	print('Invalid Choice. Exiting\n')
 	exit(0)
@@ -82,18 +82,18 @@ def newtons_method(function_num):
 	else:
 		a=0
 	#error
-	e=float(0)
-
+	e=0
+	i=0
 	while 1==1:
+		i+=1
 		f1_a=f1(a,function_num)
 		f1_diff_a=f1(a,function_num,"diff") #find the derivative at the current xi guess
 		if(float(f1_diff_a)==0):
 			print ('ERROR. Cant find root when derivative is 0. Exiting')
 			return
-
 		else:
-			x2= a-float(f1_a/f1_diff_a)
-			if(fabs(float(x2-a)) <= e):
+			x2= float(a)-float(f1_a/f1_diff_a)
+			if(fabs(float(x2-a)) <= float(e)):
 				print("Newtons Method Root: "+str(x2))
 				return
 			else:
