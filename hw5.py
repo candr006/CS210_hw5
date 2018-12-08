@@ -71,50 +71,33 @@ def bisection_method(function_num):
 
 
 def newtons_method(function_num):
-	a=0
-	b=0
-	#initialize i
-	i=1
+	if (function_num==1):
+		a=-3.5
+	if(function_num==2):
+		a=18
+	if(function_num==3):
+		a=1
+	if(function_num==4):
+		a=0
+	else:
+		a=0
 	#error
-	e=0.000001
+	e=float(0)
 
-	#evaluate for f1: #x^3-2x-5
 	while 1==1:
-		if i % 2 == 0:
-		    a+=1
-		else:
-		    b+=1
-
 		f1_a=f1(a,function_num)
-		if(f1_a==0):
-			print ('Newtons Method Root: '+str(a))
-			return
-		f1_b=f1(b,function_num)
-		if(f1_b==0):
-			print ('Newtons Method Root: '+str(b))
-			return
-		i+=1
-		f_ab=f1_a*f1_b
-		if ((f_ab)<0):
-			#found newton initial vals
-			print('Newton Initial Values a: '+str(a)+' b: '+str(b))
-			break
-
-	while 1==1:
 		f1_diff_a=f1(a,function_num,"diff") #find the derivative at the current xi guess
-		if(int(f1_diff_a)==0):
+		if(float(f1_diff_a)==0):
 			print ('ERROR. Cant find root when derivative is 0. Exiting')
 			return
 
 		else:
-			x2= a-(f1_a/f1_diff_a)
-			if(fabs(float(x2-a)) < e):
+			x2= a-float(f1_a/f1_diff_a)
+			if(fabs(float(x2-a)) <= e):
 				print("Newtons Method Root: "+str(x2))
 				return
 			else:
-				print ('Newtons Method Root: '+str(x2))
-				return
-			a=x2
+				a=x2
 
 def secant_method(function_num):
 	a=0
