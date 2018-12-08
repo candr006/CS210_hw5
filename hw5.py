@@ -131,11 +131,11 @@ def secant_method(function_num):
 		else:
 		    b+=1
 
-		f1_a=f1(a)
+		f1_a=f1(a,function_num)
 		if(f1_a==0):
 			print ('Secant Root: '+str(a))
 			return
-		f1_b=f1(b)
+		f1_b=f1(b,function_num)
 		if(f1_b==0):
 			print ('Secant Root: '+str(b))
 			return
@@ -148,7 +148,7 @@ def secant_method(function_num):
 
 	while 1==1:
 		x2=float((a*f1_b)-(b*f1_a))/float(f1_b-f1_a)
-		if(f1(x2,'')==0):
+		if(f1(x2,function_num,'')==0):
 			print ('Secant Root: '+str(x2))
 			return
 		else:
@@ -169,4 +169,4 @@ function_num=raw_input("Enter one of the numbers below: \n1. x^3-2x-5\n2. exp^-x
 #run all 3 of the methods
 bisection_method(function_num)
 newtons_method(function_num)
-#secant_method(function_num)
+secant_method(function_num)
