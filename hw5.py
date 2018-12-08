@@ -34,6 +34,7 @@ def bisection_method(function_num):
 	i=1
 	#error
 	e=0.000001
+	error_list=[]
 
 	#evaluate for f1: #x^3-2x-5
 	while 1==1:
@@ -45,10 +46,12 @@ def bisection_method(function_num):
 		f1_a=(f1(a,function_num))
 		if(f1_a==0):
 			print ('Bisection Root: '+str(a))
+			print('\n\n\n')
 			return
 		f1_b=(f1(b,function_num))
 		if(f1_b==0):
 			print ('Bisection Root: '+str(b))
+			print('\n\n\n')
 			return
 		i+=1
 		if ((f1_a*f1_b)<0):
@@ -65,8 +68,13 @@ def bisection_method(function_num):
 		else:
 			a=x0
 			f1_a=f1_x0
+		error_list.insert(0,fabs(float((b-a)/b)))
 		if(fabs(float((b-a)/b)) < e):
+			if(len(error_list)>2):
+				r=float(log(error_list[1]/error_list[2])/log(error_list[0]/error_list[1]))
+				print("Bisection Residual :"+str(r))
 			print ('Bisection Root: '+str((a+b)/2))
+			print('\n\n\n')
 			break
 
 
@@ -83,6 +91,7 @@ def newtons_method(function_num):
 		a=0
 	#error
 	e=0.00001
+	error_list=[]
 	i=0
 	while 1==1:
 		i+=1
@@ -94,8 +103,14 @@ def newtons_method(function_num):
 			return
 		else:
 			x2= float(a)-float(f1_a/f1_diff_a)
+			error_list.insert(0,fabs(float(x2-a)))
+
 			if(fabs(float(x2-a)) <= float(e)):
+				if(len(error_list)>2):
+					r=float(log(error_list[1]/error_list[2])/log(error_list[0]/error_list[1]))
+					print("Newtons Method Residual :"+str(r))
 				print("Newtons Method Root: "+str(x2))
+				print('\n\n\n')
 				return
 			else:
 				a=x2
