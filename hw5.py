@@ -11,7 +11,7 @@ def f1(x, function_num, function_type=''):
 		if(int(function_num)==3):
 			return float(sin(x)+ (x*cos(x)))
 		if(int(function_num)==4):
-			return float(3*(x*x)-(6*x)+3)
+			return float((3*(x*x))-(6*x)+3)
 	else:
 		if(int(function_num)==1):
 			return float((x*x*x)-(2*x)-5)
@@ -53,7 +53,7 @@ def bisection_method(function_num):
 		i+=1
 		if ((f1_a*f1_b)<0):
 			#found bisection initial vals
-			print('Bisection Initial Values a: '+str(a)+' b: '+str(b))
+			#print('Bisection Initial Values a: '+str(a)+' b: '+str(b))
 			break
 
 	while 1==1:
@@ -71,23 +71,24 @@ def bisection_method(function_num):
 
 
 def newtons_method(function_num):
-	if (function_num==1):
+	if (int(function_num)==1):
 		a=-3.5
-	if(function_num==2):
+	elif(int(function_num)==2):
 		a=18
-	if(function_num==3):
+	elif(int(function_num)==3):
 		a=1
-	if(function_num==4):
+	elif(int(function_num)==4):
 		a=0
 	else:
 		a=0
 	#error
-	e=0
+	e=0.00001
 	i=0
 	while 1==1:
 		i+=1
 		f1_a=f1(a,function_num)
 		f1_diff_a=f1(a,function_num,"diff") #find the derivative at the current xi guess
+		#print("Der "+str(i)+' '+str(f1_diff_a)+' a:'+str(a))
 		if(float(f1_diff_a)==0):
 			print ('ERROR. Cant find root when derivative is 0. Exiting')
 			return
@@ -126,7 +127,7 @@ def secant_method(function_num):
 
 		if (float(f1_a*f1_b)<0):
 			#found secant initial vals
-			print('Secant Initial Values a: '+str(a)+' b: '+str(b))
+			#print('Secant Initial Values a: '+str(a)+' b: '+str(b))
 			break
 
 	while 1==1:
