@@ -72,7 +72,7 @@ def bisection_method(function_num):
 		if(fabs(float((b-a)/b)) < e):
 			if(len(error_list)>2):
 				r=float(log(error_list[1]/error_list[2])/log(error_list[0]/error_list[1]))
-				print("Bisection Residual :"+str(r))
+				print("Bisection Rate of Convergence at end:"+str(r))
 			print ('Bisection Root: '+str((a+b)/2))
 			print('\n\n\n')
 			break
@@ -108,7 +108,7 @@ def newtons_method(function_num):
 			if(fabs(float(x2-a)) <= float(e)):
 				if(len(error_list)>2):
 					r=float(log(error_list[1]/error_list[2])/log(error_list[0]/error_list[1]))
-					print("Newtons Method Residual :"+str(r))
+					print("Newtons Method Rate of Convergence at end :"+str(r))
 				print("Newtons Method Root: "+str(x2))
 				print('\n\n\n')
 				return
@@ -121,40 +121,37 @@ def secant_method(function_num):
 	#initialize i
 	i=1
 	#error
-	e=0.001
+	e=0.00001
+	error_list=[]
 
-	#evaluate for f1: #x^3-2x-5
+	if (int(function_num)==1):
+		a=.82
+		b=2
+	elif(int(function_num)==2):
+		a=18.0
+		b=20.0
+	elif(int(function_num)==3):
+		a=-9.5
+		b=-6.5
+	elif(int(function_num)==4):
+		a=2
+		b=1
+
+
 	while 1==1:
-		if i % 2 == 0:
-		    a+=1
-		else:
-		    b+=1
-
 		f1_a=f1(a,function_num)
-		if(f1_a==0):
-			print ('Secant Root: '+str(a))
-			return
 		f1_b=f1(b,function_num)
-		if(f1_b==0):
-			print ('Secant Root: '+str(b))
-			return
-		i+=1
-
-		if (float(f1_a*f1_b)<0):
-			#found secant initial vals
-			#print('Secant Initial Values a: '+str(a)+' b: '+str(b))
-			break
-
-	while 1==1:
 		x2=float((a*f1_b)-(b*f1_a))/float(f1_b-f1_a)
-		if(f1(x2,function_num,'')==0):
+		if(float(f1(x2,function_num))==float(0)):
 			print ('Secant Root: '+str(x2))
 			return
 		else:
-			if(float((x2-b)/x2) > e):
+			if(fabs(float((x2-b)/x2)) > e):
+				error_list.insert(0,float((x2-b)/x2))
 				a=b
 				b=x2
 			else:
+
 				print ('Secant Root: '+str(x2))
 				return
 
